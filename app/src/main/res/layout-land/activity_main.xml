@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO 1: Replace hardcoded numeric values with dimen resources (Obviously, you'll have to create a dimens file) -->
-<!-- TODO 2: Replace hardcoded strings with string resources for every GUI text component, with the exception of the
-             TextView with the "country_description_text" id -->
-<!-- TODO 8: Add a new layout for the MainActivity to be displayed on landscape orientation -->
-<!-- TODO 9: Make sure the appropriate bitmap image is displayed for the two considered languages -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/padding"
+        android:padding="24dp"
         tools:context=".MainActivity">
 
         <Button
@@ -22,22 +17,21 @@
             style="@style/AppTheme.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_padding"
+            android:backgroundTint="@color/colorAccent"
             android:onClick="onLessonLearntClicked"
             android:text="@string/lesson_learnt_label"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/country_description_text"
             app:layout_constraintTop_toBottomOf="@+id/country_description_text" />
 
         <ImageView
             android:id="@+id/country_image"
             android:layout_width="@dimen/image_width"
             android:layout_height="@dimen/image_height"
-            android:layout_marginBottom="@dimen/image_margin"
             android:src="@drawable/ic_country"
-            app:layout_constraintBottom_toTopOf="@+id/country_title_text"
             app:layout_constraintDimensionRatio="H, 1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -45,26 +39,45 @@
         <TextView
             android:id="@+id/country_description_text"
             style="@style/AppTheme.LongText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/text_margin"
+            android:layout_marginStart="@dimen/text_margin"
             android:text="Country description"
-            app:layout_constraintBottom_toTopOf="@+id/lesson_learnt_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country_title_text" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26" />
 
         <TextView
             android:id="@+id/country_title_text"
             style="@style/AppTheme.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/text_margin"
             android:text="@string/country_title"
-            app:layout_constraintBottom_toTopOf="@+id/country_description_text"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/country_image"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/country_image"
             app:layout_constraintTop_toBottomOf="@+id/country_image" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/landImageHeight"
+            android:layout_marginTop="@dimen/landImageMargin"
+            android:layout_marginEnd="@dimen/landImageMargin"
+            android:scaleType="fitEnd"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/country_title_text"
+            app:srcCompat="@drawable/usa_bitmap" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="221dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
